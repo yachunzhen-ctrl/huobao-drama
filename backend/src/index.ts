@@ -4,6 +4,7 @@ import { serveStatic } from '@hono/node-server/serve-static'
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import path from 'path'
+import fs from 'fs'
 import { fileURLToPath } from 'url'
 
 import dramas from './routes/dramas.js'
@@ -81,7 +82,8 @@ app.use('/static/*', async (c, next) => {
 app.use('/static/*', serveStatic({ root: DATA_ROOT }))
 
 // Serve frontend (production build) — 桌面版由主进程注入 FRONTEND_DIST（resources/frontend）
-const distPath = process.env.FRONTEND_DIST || path.join(projectRoot, 'frontend', 'dist')
+const nuxtDistPath = path.join(projectRoot, 'frontend', '.output', 'public')
+const distPath = process.env.FRONTEND_DIST || (fs.existsSync(nuxtDistPath) ? nuxtDistPath : path.join(projectRoot, 'frontend', 'dist'))
 app.use('*', serveStatic({ root: distPath }))
 app.get('*', serveStatic({ root: distPath, path: 'index.html' }))
 

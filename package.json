@@ -3,11 +3,18 @@
   "version": "1.0.0",
   "private": true,
   "description": "火宝短剧 — AI 短剧制作工具（桌面版编排入口）",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "desktop"
+  ],
   "scripts": {
+    "dev": "npm run build:frontend && cd backend && PORT=3000 npm run start",
     "dev:backend": "cd backend && npm run dev",
     "dev:frontend": "cd frontend && npm run dev",
     "dev:desktop": "cd desktop && npm run dev",
     "build:frontend": "cd frontend && npm run generate",
+    "build": "npm run build:frontend && cd backend && npm run build",
     "dist": "cd desktop && npm run dist"
   }
 }

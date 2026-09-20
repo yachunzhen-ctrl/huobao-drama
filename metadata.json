@@ -1,0 +1,8 @@
+{
+  "name": "Huobao Drama",
+  "description": "火宝短剧 — AI 短剧制作工具（桌面版编排入口）",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
